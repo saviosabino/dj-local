@@ -1,0 +1,7 @@
+{% if form.errors %}
+    {{form.non_field_errors}}
+{% endif %}
+<form action="/login/" method="post">{%csrf_token%}
+{{ form.as_table }}
+<input type="submit" value="Submit" />
+</form>

@@ -1,0 +1,10 @@
+
+.divFloat{
+    float: left;
+    margin: 3px;
+}
+
+.floatKill{
+    clear: left;
+}
+

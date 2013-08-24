@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml11.dtd">
+<html>
+<head>
+    {% block header %}
+        <title>WebDj</title>
+    {% block includes %}
+        <!-- include js, css files and statements... -->
+    {% endblock %}
+    {% endblock %}
+</head>
+<body onload="{% block bodyload %}<!--nothing--> {% endblock %}">
+    {% block body %}
+        body
+    {% endblock %}
+<br />
+<p><a href="/logout/">logout</a> </p>
+</body>
+</html>
+

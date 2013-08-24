@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block includes %}
+<link rel="stylesheet" type="text/css" href="/static/css/layout.css" />
+
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/static/js/scripts.js"></script>
+
+{% endblock %}
+
+{% block bodyload %}initialize();{% endblock %}
+{% block body %}
+
+<h2> Change Local: </h2>
+
+<div id="content" >
+    <div class="divFloat">
+        <form action="/webdj/{{web_id}}/change/" method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div class="divFloat" id="map_canvas" style="width:300px; height:200px"> </div>
+    <div class="floatKill"></div>
+</div>
+
+{% endblock %}

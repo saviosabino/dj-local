@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="/webdj/{{local.id}}/change/"><img src="/static/image/bg.gif" /> change</a></p>
+
+<h1>name: {{local.name}}</h1>
+<div>
+<h3>cord: {{local.cord}}</h3><h3>addr: {{local.addr}}</h3>
+</div>
+<div>map here</div>
+<br>
+
+{% if local.comment_set.all %}
+<h3>Comments:</h3>
+<ul>
+{% for com in local.comment_set.all %}
+    <li>comment {{forloop.counter}}: {{com.comment}}</li>
+    <li>by: {{com.by}}</li>
+    <li>date: {{com.date}}</li>
+    <br />
+{% endfor %}
+</ul>
+{% else %}
+    <p>No comments yet. Do one.</p>
+{% endif %}
+<h3>New Comment:</h3>
+<form action="/webdj/{{local.id}}/" method="post">{% csrf_token %}
+{{frm.as_p}}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<p><a href="/webdj/add/"><img src="/static/image/bg.gif" /> add</a></p>
+{% if latest_locals %}
+<ul>
+{% for local in latest_locals %}
+    <li><a href="/webdj/{{local.id}}/">{{local.name}}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+    <p>No locals in database.</p>
+{% endif %}
+{% endblock %}
+

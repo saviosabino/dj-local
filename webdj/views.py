@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from dj.webdj import models, forms
+from webdj import models, forms
 #from dj.webdj import forms
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import  HttpResponseRedirect, HttpResponse

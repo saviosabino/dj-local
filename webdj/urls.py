@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import DetailView, ListView
-from dj.webdj.models import Local
+from webdj.models import Local
 
 urlpatterns = patterns('webdj.views',
     (r'^$', 'index'),

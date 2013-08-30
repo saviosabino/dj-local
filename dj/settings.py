@@ -1,8 +1,12 @@
-# Django settings for dj project.
 
 import os
 
-ROOTDIR = os.path.realpath(os.path.dirname(__file__))
+ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__),os.pardir))
+
+#print('rootdir: ', ROOTDIR)
+#print('dirname:' + os.path.dirname(__file__))
+
+#print('pwd: ' + os.path.abspath(os.curdir))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -16,13 +20,15 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dj.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(ROOTDIR,'dev.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+ALLOWED_HOSTS = []
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -94,7 +100,7 @@ SECRET_KEY = '9*6xzr1dq@-b-ntjckq))p4%c@y^4&gvsuztq90*e=pb%xa*vn'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,6 +112,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'dj.urls'
+
+WSGI_APPLICATION = 'dj.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -133,12 +141,19 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },

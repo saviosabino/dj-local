@@ -1,4 +1,4 @@
-from dj.webdj.models import Local, Comment
+from webdj.models import Local, Comment
 from django.contrib import admin
 
 class CommentInline(admin.StackedInline):

@@ -7,7 +7,7 @@ class CommentInline(admin.StackedInline):
 
 class LocalAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name']}),
+        (None, {'fields': ['name','user']}),
         ('Data', {'fields': ['cord','addr'], 'classes': ['collapse']}),
     ]
     inlines = [CommentInline]

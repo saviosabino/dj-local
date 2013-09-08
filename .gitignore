@@ -7,8 +7,8 @@
 ./*/*/.git
 ./*/.hg
 ./*/*/.hg
-*.pic
-*.pio
+*.pyc
+*.pyo
 *.swp
 *~
 .oldhg

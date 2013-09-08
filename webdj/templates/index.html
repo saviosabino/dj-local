@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-{% block body %}
-ola
-<br>
-var: {{ok}}
 
-<br>
-<a href="/webdj/list/">list</a>
+{% block includes %}
+    <script type="text/javascript" src="/static/js/script.js"></script>
+{% endblock %}
+
+{% block body %}
+    ola
+    <br>
+    var: {{ok}}
+    <br>
+    <a href="/webdj/list/">list</a>
 {% endblock %}
 

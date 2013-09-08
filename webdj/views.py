@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+
 from webdj import models, forms
 #from dj.webdj import forms
 from django.shortcuts import render_to_response, get_object_or_404
@@ -7,6 +8,16 @@ from django.template.context import RequestContext
 from django.core.urlresolvers import reverse
 import datetime
 import calendar
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+
+@csrf_exempt
+def search(request):
+    data = models.Local.objects.filter(name__contains = request.POST['q'])
+    #data = list(data.values('id', 'name', 'cord', 'addr'))
+    fields = ('name','cord','addr')
+    response_data = serializers.serialize('json', data, fields=fields)
+    return HttpResponse(response_data, mimetype='application/json')
 
 def index(request):
     return render_to_response('index.html',{'ok':'ok'})
@@ -15,7 +26,7 @@ def calSample(request):
     cal = calendar.HTMLCalendar()
     return HttpResponse(cal.formatyear(2012))
 
-@login_required
+#@login_required
 def list(request):
     latest_locals = models.Local.objects.all().\
         filter(user=request.user).order_by('name')[:5]
@@ -66,6 +77,5 @@ def change(request,web_id):
         form = forms.LocalForm(instance=local)
     return render_to_response('change.html', {'form': form, 'web_id': web_id},
         context_instance = RequestContext(request))
-
 
 

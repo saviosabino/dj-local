@@ -1,6 +1,6 @@
-from django.conf.urls.defaults import patterns, include, url
-from django.views.generic import DetailView, ListView
-from webdj.models import Local
+from django.conf.urls import patterns#, include, url
+#from django.views.generic import DetailView, ListView
+#from webdj.models import Local
 
 urlpatterns = patterns('webdj.views',
     (r'^$', 'index'),
@@ -8,8 +8,7 @@ urlpatterns = patterns('webdj.views',
     (r'^(?P<web_id>\d+)/$', 'detail'),
     (r'^(?P<web_id>\d+)/change/$', 'change'),
     (r'^add/$', 'add'),
-#    (r'^pathin/$', 'pathin'),
-    
+    (r'^search/$', 'search'),
 )
 
 #urlpatterns += patterns('',

@@ -5,8 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    (r'^webdj/', include('webdj.urls')),
-    (r'^$', include('webdj.urls')),
+    (r'^$', include('core.urls')),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', 'django.contrib.auth.views.logout_then_login'),
 )

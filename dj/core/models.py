@@ -33,5 +33,5 @@ def sendmail(**kwargs):
 
 models.signals.post_save.connect(sendmail,
     sender = Local,
-    dispatch_uid = 'webdj.models.Local')
+    dispatch_uid = 'core.models.Local')
 

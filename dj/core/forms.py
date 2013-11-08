@@ -1,5 +1,5 @@
 from django import forms
-from webdj import models
+from core import models
 
 class LocalForm(forms.ModelForm):
     class Meta:

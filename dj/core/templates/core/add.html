@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block body %}
+{% block content %}
     <h2>New Local:</h2>
     <form action="/webdj/add/" method="post">{%csrf_token%}
         {{form.as_p}}

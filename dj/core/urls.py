@@ -1,14 +1,15 @@
 from django.conf.urls import patterns#, include, url
-#from django.views.generic import DetailView, ListView
+from django.views.generic import TemplateView#, DetailView, ListView
 #from webdj.models import Local
 
-urlpatterns = patterns('webdj.views',
+urlpatterns = patterns('core.views',
     (r'^$', 'index'),
     (r'^list/$', 'list'),
-    (r'^(?P<web_id>\d+)/$', 'detail'),
-    (r'^(?P<web_id>\d+)/change/$', 'change'),
+    (r'^(?P<ob_id>\d+)/$', 'detail'),
+    (r'^(?P<ob_id>\d+)/change/$', 'change'),
     (r'^add/$', 'add'),
     (r'^search/$', 'search'),
+    (r'^jumbo/$', TemplateView.as_view(template_name='jumbotron-narrow.html')),
 )
 
 #urlpatterns += patterns('',

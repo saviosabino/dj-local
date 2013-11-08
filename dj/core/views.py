@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 
-from webdj import models, forms
+from core import models, forms
 #from dj.webdj import forms
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import  HttpResponseRedirect, HttpResponse
@@ -20,31 +20,31 @@ def search(request):
     return HttpResponse(response_data, mimetype='application/json')
 
 def index(request):
-    return render_to_response('index.html',{'ok':'ok'})
+    return render_to_response('index.html',)
 
 def calSample(request):
     cal = calendar.HTMLCalendar()
     return HttpResponse(cal.formatyear(2012))
 
-#@login_required
+@login_required
 def list(request):
     latest_locals = models.Local.objects.all().\
         filter(user=request.user).order_by('name')[:5]
     return render_to_response('list.html', {'latest_locals': latest_locals,})
 
-def detail(request, web_id):
+def detail(request, ob_id):
     if request.method == 'POST':
         frm = forms.CommentForm(request.POST)
         if frm.is_valid():
             comment = frm.save(commit=False)
-            comment.local_id = web_id
+            comment.local_id = ob_id
             comment.date = datetime.datetime.now()
             comment.save()
             return HttpResponseRedirect(
-                reverse('webdj.views.detail',args=(web_id,)))
+                reverse('core.views.detail',args=(ob_id,)))
     else:
         frm = forms.CommentForm()
-    local = get_object_or_404(models.Local, pk=web_id)
+    local = get_object_or_404(models.Local, pk=ob_id)
     
     return render_to_response(
         'detail.html', {'local': local, 'frm': frm}, 
@@ -60,22 +60,22 @@ def add(request):
             local = form.save(commit=False)
             local.user = request.user
             local.save()
-            return HttpResponseRedirect('/webdj/')
+            return HttpResponseRedirect('list/')
     return render_to_response('add.html', {'form': form},
         context_instance=RequestContext(request))
 
 @login_required
-def change(request,web_id):
-    local = get_object_or_404(models.Local, pk=web_id)
+def change(request,ob_id):
+    local = get_object_or_404(models.Local, pk=ob_id)
     if request.method == 'POST':
         form = forms.LocalForm(request.POST, instance=local)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(
-                reverse('webdj.views.detail', args=(web_id,)))
+                reverse('core.views.detail', args=(ob_id,)))
     else:
         form = forms.LocalForm(instance=local)
-    return render_to_response('change.html', {'form': form, 'web_id': web_id},
+    return render_to_response('change.html', {'form': form, 'web_id': ob_id},
         context_instance = RequestContext(request))
 
 

@@ -1,16 +1,30 @@
 {% extends 'core/base.html' %}
+
+{% block includes %}
+
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/static/js/script.js"></script>
+
+{% endblock %}
+
+{% block bodyload %}initialize();{% endblock %}
+
 {% block content %}
-<p><a href="/{{local.id}}/change/"><img src="/static/image/bg.gif" /> change</a></p>
+<p><a href="/list/">back</a>, <a href="/{{local.id}}/change/"> change</a></p>
 
 <h1>name: {{local.name}}</h1>
 <div>
-    <h3>cord: {{local.cord}}</h3><h3>addr: {{local.addr}}</h3>
+    <h3>address: {{local.address}}</h3>
 </div>
-<div>map here</div>
+<div class="divFloat" id="map_canvas" style="width:300px; height:200px"> </div>
+<div class="floatKill"></div>
+<br>
 <br>
 
+<h2>Comments:</h2>
 {% if local.comment_set.all %}
-<h3>Comments:</h3>
+
 <ul>
 {% for com in local.comment_set.all %}
     <li>comment {{forloop.counter}}: {{com.comment}}</li>

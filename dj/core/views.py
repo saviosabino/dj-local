@@ -11,8 +11,7 @@ from django.core import serializers
 @csrf_exempt
 def search(request):
     data = models.Local.objects.filter(name__contains = request.POST['q'])
-    #data = list(data.values('id', 'name', 'cord', 'addr'))
-    fields = ('name','cord','addr')
+    fields = ('name','coordinates','address')
     response_data = serializers.serialize('json', data, fields=fields)
     return HttpResponse(response_data, mimetype='application/json')
 
@@ -47,6 +46,7 @@ def detail(request, ob_id):
 def add(request):
     if request.method == 'POST':
         form = forms.LocalForm(request.POST)
+        form.coordinates = 0
         if form.is_valid():
             local = form.save(commit=False)
             local.user = request.user
@@ -62,6 +62,7 @@ def change(request,ob_id):
     local = get_object_or_404(models.Local, pk=ob_id)
     if request.method == 'POST':
         form = forms.LocalForm(request.POST, instance=local)
+        form.coordinates = 0
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(

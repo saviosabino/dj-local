@@ -9,8 +9,9 @@
 {% endblock %}
 
 {% block bodyload %}initialize();{% endblock %}
-{% block content %}
 
+{% block content %}
+<p><a href="/list/">back</a></p>
 <h2> Change Local: </h2>
 
 <div id="content" >
@@ -24,5 +25,4 @@
     <div class="divFloat" id="map_canvas" style="width:300px; height:200px"> </div>
     <div class="floatKill"></div>
 </div>
-
 {% endblock %}

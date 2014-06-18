@@ -171,7 +171,6 @@ DEFAULT_FROM_EMAIL = "saviopp@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "saviopp@gmail.com"
-EMAIL_HOST_PASSWORD = "0n1b4sl3gn4r"
 EMAIL_USE_TLS = True
 
 

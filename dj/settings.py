@@ -156,3 +156,15 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "saviopp@gmail.com"
 EMAIL_USE_TLS = True
 
+##################
+# LOCAL SETTINGS #
+##################
+
+# Allow any settings to be defined in local_settings.py which should be
+# ignored in your version control system allowing for settings to be
+# defined per machine.
+try:
+    from local_settings import *
+except ImportError:
+    pass
+

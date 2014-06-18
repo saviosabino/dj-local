@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% block content %}
-<p><a href="/webdj/{{local.id}}/change/"><img src="/static/image/bg.gif" /> change</a></p>
+<p><a href="/{{local.id}}/change/"><img src="/static/image/bg.gif" /> change</a></p>
 
 <h1>name: {{local.name}}</h1>
 <div>
-<h3>cord: {{local.cord}}</h3><h3>addr: {{local.addr}}</h3>
+    <h3>cord: {{local.cord}}</h3><h3>addr: {{local.addr}}</h3>
 </div>
 <div>map here</div>
 <br>
@@ -22,9 +22,28 @@
 {% else %}
     <p>No comments yet. Do one.</p>
 {% endif %}
+<br>
 <h3>New Comment:</h3>
-<form action="/webdj/{{local.id}}/" method="post">{% csrf_token %}
-{{frm.as_p}}
-<input type="submit" value="Submit" />
+
+<form action="/{{local.id}}/" method="post" class="form-horizontal" role="form">{% csrf_token %}
+    <br>
+    <div class="form-group">
+        <label for="id_by" class="col-md-2 control-label">By:</label>
+        <div class="col-md-4">
+            <input type="text" name="by" maxlength="50" id="id_by" class="form-control" placeholder="who">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_comment" class="col-md-2 control-label">Comment:</label>
+        <div class="col-md-8">
+            <textarea name="comment" cols="50" id="id_comment" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
 </form>
+
 {% endblock %}

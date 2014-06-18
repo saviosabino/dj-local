@@ -2,7 +2,7 @@ from django.conf.urls import patterns#, include, url
 from django.views.generic import TemplateView#, DetailView, ListView
 #from webdj.models import Local
 
-urlpatterns = patterns('core.views',
+urlpatterns = patterns('dj.core.views',
     (r'^$', 'index'),
     (r'^list/$', 'list'),
     (r'^(?P<ob_id>\d+)/$', 'detail'),

@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/static/css/style.css">      
 
-        {% block includes %}
-            <!-- include js, css files and statements... -->
-        {% endblock %}
+    {% block includes %}
+        <!-- include js, css files and statements... -->
+    {% endblock %}
     {% endblock %}
 </head>
 <body onload="{% block bodyload %}{% endblock %}">
     {% block body %}
         {% block nav %}
-            {% include "nav.html" %}
+            {% include "core/nav.html" %}
         {% endblock %}
-
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron">c
+        <div class="row-fluid">e</div>
         {% block content %}
         
         {% endblock %}

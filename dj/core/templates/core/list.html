@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% block content %}
-    <p><a href="/webdj/add/"><img src="/static/image/bg.gif" /> add</a></p>
+    <p><a href="/add/"><img src="/static/image/bg.gif" /> add</a></p>
     {% if latest_locals %}
         <ul>
             {% for local in latest_locals %}
-                <li><a href="/webdj/{{local.id}}/">{{local.name}}</a></li>
+                <li><a href="/{{local.id}}/">{{local.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

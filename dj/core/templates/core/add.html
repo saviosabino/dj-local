@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% block content %}
     <h2>New Local:</h2>
-    <form action="/webdj/add/" method="post">{%csrf_token%}
+    <form action="/add/" method="post">{%csrf_token%}
         {{form.as_p}}
         <input type="submit" value="Submit" />
     </form>

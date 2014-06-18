@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 
 {% block includes %}
 
@@ -15,7 +15,7 @@
 
 <div id="content" >
     <div class="divFloat">
-        <form action="/webdj/{{web_id}}/change/" method="post">
+        <form action="/{{ob_id}}/change/" method="post">
             {%csrf_token%}
             {{form.as_p}}
             <input type="submit" value="Submit"/>

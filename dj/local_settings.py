@@ -3,10 +3,6 @@ import os
 
 ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__),os.pardir))
 
-#print('rootdir: ', ROOTDIR)
-#print('dirname:' + os.path.dirname(__file__))
-
-#print('pwd: ' + os.path.abspath(os.curdir))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

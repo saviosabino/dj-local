@@ -3,5 +3,6 @@
 {% endif %}
 <form action="/login/" method="post">{%csrf_token%}
 {{ form.as_table }}
+<p><b>login:</b> test, <b>password:</b> test</p>
 <input type="submit" value="Submit" />
 </form>

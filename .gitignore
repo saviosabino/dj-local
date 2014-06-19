@@ -12,6 +12,7 @@
 *.swp
 *~
 .oldhg
+*local_settings.py*
 
 # Packages
 *.egg

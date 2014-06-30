@@ -1,9 +1,36 @@
 {% extends 'core/base.html' %}
+
+{% block post_includes %}
+<script type="text/javascript" 
+    src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="/static/js/script.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        getUserLocation(function(userLocation){
+            initMap(userLocation);
+            initAddrComplete(userLocation);
+        });
+        $('#id_address').blur(function(){
+            setCoordinates();
+        });
+    });
+</script>
+
+{% endblock %}
+
 {% block content %}
-    <p><a href="/list/">back</a></p>
-    <h2>New Local:</h2>
-    <form action="/add/" method="post">{%csrf_token%}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+<p><a href="/list/">back</a></p>
+<h2>New Local:</h2>
+<div id="content">
+    <div class="divFloat">
+        <form action="/add/" method="post">{%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    <div class="divFloat" id="map_canvas" style="width:600px; height:400px"> </div>
+    <div class="floatKill"></div>
+
+</div>
 {% endblock %}

@@ -8,13 +8,6 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
-@csrf_exempt
-def search(request):
-    data = models.Local.objects.filter(name__contains = request.POST['q'])
-    fields = ('name','coordinates','address')
-    response_data = serializers.serialize('json', data, fields=fields)
-    return HttpResponse(response_data, mimetype='application/json')
-
 def index(request):
     return render_to_response('core/index.html',)
 
@@ -42,7 +35,7 @@ def detail(request, ob_id):
             'core/detail.html', {'local': local, 'frm': frm}, 
             context_instance = RequestContext(request))
 
-@login_required
+#@login_required
 def add(request):
     if request.method == 'POST':
         form = forms.LocalForm(request.POST)
@@ -71,5 +64,12 @@ def change(request,ob_id):
         form = forms.LocalForm(instance=local)
         return render_to_response('core/change.html', {'form': form, 'ob_id': ob_id},
             context_instance = RequestContext(request))
+
+#@csrf_exempt
+def search(request):
+    data = models.Local.objects.filter(name__contains = request.POST['q'])
+    fields = ('name','coordinates','address')
+    response_data = serializers.serialize('json', data, fields=fields)
+    return HttpResponse(response_data, mimetype='application/json')
 
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/static/css/style.css">      
 
-    {% block includes %}
+    {% block pre_includes %}
         <!-- include js, css files and statements... -->
     {% endblock %}
     {% endblock %}
@@ -32,6 +32,9 @@
 
 <script src="/static/js/jquery-2.0.3.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+{% block post_includes %}
+    <!-- include js after load page-->
+{% endblock %}
 </body>
 </html>
 

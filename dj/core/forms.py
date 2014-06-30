@@ -4,7 +4,8 @@ from dj.core import models
 class LocalForm(forms.ModelForm):
     class Meta:
         model = models.Local
-        fields = ['name', 'address']
+        fields = ['name', 'address','coordinates']
+        widgets = {'coordinates' : forms.HiddenInput()}
 
 class CommentForm(forms.ModelForm):
 #   date = forms.DateField(

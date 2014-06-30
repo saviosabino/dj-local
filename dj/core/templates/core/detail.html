@@ -1,14 +1,27 @@
 {% extends 'core/base.html' %}
 
-{% block includes %}
-
+{% block post_includes %}
 <script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    src="http://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="/static/js/script.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        var strcoordinates = $('#id_coordinates').val();
+        if(strcoordinates == 0 || strcoordinates == ""){
+            getUserLocation(function(userLocation){
+                initMap(userLocation);
+                mark(userLocation);
+            });
+        } else {
+            var geolocation = getCoordinates();
+            initMap(geolocation);
+            mark(geolocation);
+        };
+       
+    });
+</script>
 {% endblock %}
-
-{% block bodyload %}initialize();{% endblock %}
 
 {% block content %}
 <p><a href="/list/">back</a>, <a href="/{{local.id}}/change/"> change</a></p>
@@ -16,8 +29,10 @@
 <h1>name: {{local.name}}</h1>
 <div>
     <h3>address: {{local.address}}</h3>
+    <input type="hidden" id="id_coordinates" name="coordinates" 
+        value="{{local.coordinates}}">
 </div>
-<div class="divFloat" id="map_canvas" style="width:300px; height:200px"> </div>
+<div class="divFloat" id="map_canvas" style="width:700px; height:500px"> </div>
 <div class="floatKill"></div>
 <br>
 <br>

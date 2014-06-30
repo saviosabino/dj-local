@@ -1,14 +1,31 @@
 {% extends 'core/base.html' %}
 
-{% block includes %}
-
-<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+{% block post_includes %}
+<script type="text/javascript" 
+    src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script type="text/javascript" src="/static/js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var strcoordinates = $('#id_coordinates').val();
+        if(strcoordinates == 0 || strcoordinates == ""){
+            getUserLocation(function(userLocation){
+                initMap(userLocation);
+                initAddrComplete(userLocation);
+                mark(userLocation);
+            });
+        } else {
+            var geolocation = getCoordinates();
+            initMap(geolocation);
+            initAddrComplete(geolocation);
+            mark(geolocation);
+        };
+        $('#id_address').blur(function(){
+            setCoordinates();
+        });
+    });
+</script>
 
 {% endblock %}
-
-{% block bodyload %}initialize();{% endblock %}
 
 {% block content %}
 <p><a href="/list/">back</a></p>
@@ -22,7 +39,7 @@
             <input type="submit" value="Submit"/>
         </form>
     </div>
-    <div class="divFloat" id="map_canvas" style="width:300px; height:200px"> </div>
+    <div class="divFloat" id="map_canvas" style="width:600px; height:400px"> </div>
     <div class="floatKill"></div>
 </div>
 {% endblock %}

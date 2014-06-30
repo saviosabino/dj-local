@@ -25,11 +25,19 @@
 <div id="content">
     <div class="divFloat">
         <form action="/add/" method="post">{%csrf_token%}
-            {{form.as_p}}
+            <div class="form-group">
+                <label for="id_name">Name:</label>
+                <input type="text" name="name" id="id_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="id_address">Address:</label>
+                <input id="id_address" type="text" name="address" class="form-control">
+            </div>
+            <input id="id_coordinates" type="hidden" name="coordinates">
             <input type="submit" value="Submit" />
         </form>
     </div>
-    <div class="divFloat" id="map_canvas" style="width:600px; height:400px"> </div>
+    <div class="divFloat" id="map_canvas" style="width:600px; height:400px; margin-left:60px;"> </div>
     <div class="floatKill"></div>
 
 </div>

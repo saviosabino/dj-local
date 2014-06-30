@@ -11,7 +11,7 @@ from django.core import serializers
 def index(request):
     return render_to_response('core/index.html',)
 
-@login_required
+#@login_required
 def list(request):
     latest_locals = models.Local.objects.all().\
         filter(user=request.user).order_by('name')[:5]
@@ -50,7 +50,7 @@ def add(request):
         return render_to_response('core/add.html', {'form': form},
             context_instance=RequestContext(request))
 
-@login_required
+#@login_required
 def change(request,ob_id):
     local = get_object_or_404(models.Local, pk=ob_id)
     if request.method == 'POST':
